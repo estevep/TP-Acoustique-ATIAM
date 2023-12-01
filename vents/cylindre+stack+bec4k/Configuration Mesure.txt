@@ -1,0 +1,21 @@
+[INFOS GENERALES]
+Version=1.4
+Nom du Projet=flute_impedance
+Diamètre de l'instrument (mm)=19,000000
+Nom Mesure=cylindre+stack+bec4k
+Date=24/11/2023
+Opérateur=""
+Nb voies=2
+Commentaires=""
+[SIGNAL]
+Type de signal d'excitation=Chirp
+[CHIRP]
+Freq min (Hz)=100,000000
+Freq max (Hz)=4000,000000
+Freq Ech (Hz)=25000,000000
+Durée (s)=2,000000
+Type de Chirp=Log
+Niveau signal  (Vpk)=1,000000
+Nombre de moyennes=10
+[EXTERNE]
+Chemin du signal externe=""

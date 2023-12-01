@@ -1,0 +1,6 @@
+[Général]
+Version=1.4
+Nom du projet=flute_impedance
+Date=24/11/2023
+Auteur=EP
+Commentaire=RAS
