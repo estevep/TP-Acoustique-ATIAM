@@ -72,7 +72,7 @@ Dans la suite, on cherchera à identifier et comparer les paramètres équivalen
 
 On suspend l'instrument à un bras de façon à ce qu'il ne soit pas amorti. On fait également glisser une bande de feutre dans les cordes, afin de les étouffer totalement. On peut voir les deux instruments en situation de mesure aux figures \ref{fig:photo-guitare}.et \ref{fig:photo-ukulele}.
 
-Un accéléromètre est fixé au point de déplacement maximal de la table d'harmonie décrit dans \cite{fletcher2012physics}, juste au-dessous du chevalet pour la guitare et juste au-dessus pour l'ukulele, sur l'axe de symétrie de l'instrument. Muni d'un marteau de mesure, on frappe le plus proche possible de ce point, également sur l'axe de symétrie.
+Un accéléromètre est fixé au point de déplacement maximal de la table d'harmonie décrit dans \cite{fletcher2012physics}, juste au-dessous du chevalet pour la guitare et juste au-dessus pour le ukulele, sur l'axe de symétrie de l'instrument. Muni d'un marteau de mesure, on frappe le plus proche possible de ce point, également sur l'axe de symétrie.
 
 
 Pour chacun des instruments, on effectue 4 mesures :
@@ -129,7 +129,7 @@ On effectue les 4 premières mesures sur la guitare. Les différentes FRF sont c
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{cordes/images/Guitare col.png}
-    \caption{comparaison des FRF de la guitare nue et avec un col}
+    \caption{Comparaison des FRF de la guitare nue et avec un col}
     \label{fig:frf-guitare-col}
 \end{figure}
 
@@ -140,6 +140,30 @@ On observe plusieurs points:
     \item l'ajout d'un col ($4\si{cm}$) abaisse la fréquence de du deuxième pic (car il augmente la masse d'air $m_a$), confirmant le point précédent.
     \item on identifie donc $f_-$ comme étant le premier pic par élimination.
 \end{itemize}
+
+\section{Mesures sur le ukulélé}
+On procède de même sur le ukulélé.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{cordes/images/Ukulele masse ajoutee 20g.png}
+    \caption{Comparaison des FRF du ukulélé nu et avec une masse ajoutée}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{cordes/images/Ukulele bouché.png}
+    \caption{Comparaison des FRF du ukulélé nu et avec évent bouché}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{cordes/images/Ukulele col.png}
+    \caption{Comparaison des FRF du ukulélé nu et avec une masse ajoutée}
+    \label{fig:enter-label}
+\end{figure}
 
 \printbibliography
 
