@@ -1,5 +1,7 @@
 \documentclass[atiam, article]{rapport} % draft, phelma_black, phelma_normal, kit_de, kit_en, phelma_old
 \usepackage{booktabs}
+\usepackage{float}
+\bibliography{truc.bib}
 
 \doctitle{TP Percussions}
 \title{TP Percussions\\Accord ou pas d'accord ?}
@@ -54,14 +56,15 @@ Afin de déterminer le meilleur placement de micro, nous avons effectué une mes
   \item au-dessus centre de la membrane
   \item au-dessus de la moitié du rayon de la membrane, opposé au point de frappe
 \end{itemize}
-En frappant près du bord de la membrane, la timbale est assimilable à un dipôle rayonnant. On observe donc des annulations dans le spectre lorsque le micro est placé au centre. On placera donc dans la suite le micro dans la seconde position.
+
+En frappant près du bord de la membrane, la timbale est assimilable à un dipôle rayonnant. On observe donc des annulations dans le spectre lorsque le micro est placé au centre. On placera donc dans la suite le micro dans la seconde position, afin d'éviter ce type de phénomène.
 
 \subsection{Reproductibilité de l'excitation}
 
 Après quelques essais, il s'est avéré que notre méthode d'excitation ne convenait pas:
 \begin{itemize}
   \item les frottements entre les doigts et la baguette de la mailloche rendent sa vitesse de chute dépendante du serrage des doigts
-  \item il est difficile de s'assurer un coup unique et n'amortissant pas l'instrument, la mailloche ne rebondissant qu'assez peu sur l'instrument
+  \item il est difficile de garantir un coup unique et n'amortissant pas l'instrument, la mailloche ne rebondissant qu'assez peu
 \end{itemize}
 
 Face à ces limitations, nous avons choisi de frapper "à la main". Afin que les excitations soient les plus proches d'un dirac, nous veillons à respecter les mouvements en usage chez les percussionistes, notamment exagérer les mouvements pré- et post-frappe, et utiliser les doigts et le poignet plutôt que les avant-bras.
@@ -119,27 +122,88 @@ Un programme python donné en annexe traite chaque mesure et effectue les opéra
   \item Tracé des figures et tables incluses dans ce rapport
 \end{itemize}
 
-Les partiels retenus ont été choisis par nos soins visuellement à l'aide du logiciel Sonic Visualiser, aucune méthode d'analyse automatique n'ayant donné de résultats satisfaisants.
+Les partiels étudiés ont été choisis par nos soins visuellement et en basse fréquence afin d'observer clairement les premiers modes. Aucune méthode d'extraction de pics automatique du spectre n'a donné de résultats satisfaisants.
 
 \subsection{Commentaires sur le glockenspiel}
-Les spectres des enregistrements et tables d'inharmonicité sont relevés en annexe \ref{annexe:glock}.
 
-On effectue 3 mesures des notes F5, F6 et F7; F5 et F7 étant les extrêmes de la tessiture de l'instrument.
+\begin{figure}
+  \begin{center}
+      \includegraphics[width=\textwidth]{percu/glock-f5.wav.spectre.png}
+  \end{center}
+  \caption{Spectre de glock-f5}
+  \label{fig:spectre-glock-f5.wav}
+\end{figure}
+\input{percu/glock-f5.wav.partiels.tex}
+
+\begin{figure}
+  \begin{center}
+      \includegraphics[width=\textwidth]{percu/glock-f6.wav.spectre.png}
+  \end{center}
+  \caption{Spectre de glock-f6}
+  \label{fig:spectre-glock-f6.wav}
+\end{figure}
+\input{percu/glock-f6.wav.partiels.tex}
+
+\begin{figure}
+  \begin{center}
+      \includegraphics[width=\textwidth]{percu/glock-f7.wav.spectre.png}
+  \end{center}
+  \caption{Spectre de glock-f7}
+  \label{fig:spectre-glock-f7.wav}
+\end{figure}
+\input{percu/glock-f7.wav.partiels.tex}
+
+On effectue 3 mesures des notes F5 (figure \ref{fig:spectre-glock-f5.wav}, table \ref{table:partiels-glock-f5.wav}), F6 (\ref{fig:spectre-glock-f6.wav}, table \ref{table:partiels-glock-f6.wav}) et F7 (\ref{fig:spectre-glock-f7.wav}, table \ref{table:partiels-glock-f7.wav}); F5 et F7 étant les extrêmes de la tessiture de l'instrument.
 
 On observe les points suivants:
 \begin{itemize}
-  \item En comparant les ratios avec ceux données dans la table \ref{table:ratios}, on retrouve les partiels dont l'inharmonicité est prévue par le modèle théorique.
+  \item En comparant les ratios avec ceux données dans la table \ref{table:ratios}, on retrouve bien les partiels dont l'inharmonicité est prévue par le modèle théorique.
   \item Selon les notes jouées, d'autres partiels sont également présents. Cela montre les limites du modèle qui prend en compte ni la torsion, ni la traction-compression, et ce dans une seule dimension.
 \end{itemize}
 
 \subsection{Commentaires sur le vibraphone}
-Les spectres des enregistrements et tables d'inharmonicité sont relevés en annexe \ref{annexe:vibra}.
 
-On procède de même sur le vibraphone, où on mesure les lames F3, A4 et E6, F3 et E6 étant les extrêmes de la tessiture de l'instrument. En réalité, la note la plus haute est F6, mais sur l'instrument mis à disposition cette note est amortie par une suspension trop serrée.
+\begin{figure}
+  \begin{center}
+      \includegraphics[width=\textwidth]{percu/vibra-f3.wav.spectre.png}
+  \end{center}
+  \caption{Spectre de vibra-f3}
+  \label{fig:spectre-vibra-f3.wav}
+\end{figure}
+\input{percu/vibra-f3.wav.partiels.tex}
 
-Nous mesurons également deux excitations différentes pour A4: au centre et au bord. Lors d'un jeu à 4 baguettes, certains accords sont très difficiles à jouer en frappant au centre des lames sans se contortionner. Le percussionniste préfère alors une position de jeu plus confortable et va frapper certaines lames sur leur bord, afin de garder ses poignets dans la continuité de ses avant-bras.
+\begin{figure}
+  \begin{center}
+      \includegraphics[width=\textwidth]{percu/vibra-e6.wav.spectre.png}
+  \end{center}
+  \caption{Spectre de vibra-e6}
+  \label{fig:spectre-vibra-e6.wav}
+\end{figure}
+\input{percu/vibra-e6.wav.partiels.tex}
+
+On procède de même sur le vibraphone, où on mesure les lames F3 (figure \ref{fig:spectre-vibra-f3.wav}, table \ref{table:partiels-vibra-f3.wav}) et E6 (figure \ref{fig:spectre-vibra-e6.wav}, table \ref{table:partiels-vibra-e6.wav}), les extrêmes de la tessiture de l'instrument. En réalité, la note la plus haute est F6, mais sur l'instrument mis à disposition cette note est amortie par une suspension trop serrée.
 
 Cet instrument se distingue du glockenspiel par ses lames usinées qui ne sont donc plus strictement parallélépipédiques, ce afin notamment d'améliorer leur harmonicité.
+
+Nous mesurons également deux excitations différentes pour A4: au centre (figure \ref{fig:spectre-vibra-a4-centre.wav}, table \ref{table:partiels-vibra-a4-centre.wav}) et au bord (figure \ref{fig:spectre-vibra-a4-bord.wav}, table \ref{table:partiels-vibra-a4-bord.wav}). En effet, lors d'un jeu à 4 baguettes, certains accords sont très difficiles à jouer en frappant au centre des lames sans se contortionner. Le percussionniste préfère alors une position de jeu plus confortable et va frapper certaines lames sur leur bord, afin de garder ses poignets dans la continuité de ses avant-bras.
+
+\begin{figure}
+  \begin{center}
+      \includegraphics[width=\textwidth]{percu/vibra-a4-bord.wav.spectre.png}
+  \end{center}
+  \caption{Spectre de vibra-a4-bord}
+  \label{fig:spectre-vibra-a4-bord.wav}
+\end{figure}
+\input{percu/vibra-a4-bord.wav.partiels.tex}
+
+\begin{figure}
+  \begin{center}
+      \includegraphics[width=\textwidth]{percu/vibra-a4-centre.wav.spectre.png}
+  \end{center}
+  \caption{Spectre de vibra-a4-centre}
+  \label{fig:spectre-vibra-a4-centre.wav}
+\end{figure}
+\input{percu/vibra-a4-centre.wav.partiels.tex}
 
 On observe les points suivants:
 \begin{itemize}
@@ -149,65 +213,120 @@ On observe les points suivants:
 \end{itemize}
 
 \section{Timbale}
+\subsection{Étude théorique}
+
+La membrane, supposée fine, parfaitement élastique et de tension uniforme est régie par l'équation:
+
+$$\Delta z(r,\theta, t) = \frac{1}{c^2} \frac{\partial^2 z(r,\theta,t)}{\partial t^2}$$ où:
+\begin{itemize}
+  \item $z(r,\theta, t)$ est le déplacement de la membrane
+  \item $c^2 = \frac{\tau}{\rho}$ avec $\tau$ la tension et $\rho$ la masse surfacique de la membrane
+\end{itemize}
+
+Les fréquences modales sont données par $f_{mn} = \frac{j_{mn} c}{2a}$ où
+\begin{itemize}
+  \item $R$ est le rayon de la membrane
+  \item $j_{mn}$ sont les solutions de $J_m(j_{mn}) = 0$, où $J_m$ est la fonction de Bessel de première espèce d'ordre m.
+\end{itemize}
 
 
-\appendix
-\section{Mesures glockenspiel}
-\label{annexe:glock}
+\subsection{Comparaison du point d'excitation}
 
-\begin{figure}[h!]
+Pour une tension de membrane fixée, on frappe à différents points distribués sur une ligne de rayon de la membrane. On note $a$ la distance du point avec le centre de la membrane et $R$ le rayon de la membrane. On effectue 4 mesures:
+\begin{itemize}
+  \item $a=3R/4$ (près du bord de la membrane)
+  \item $a=R/2$
+  \item $a=R/4$
+  \item $a=0$ (au centre de la membrane)
+\end{itemize}
+
+On obtient les signaux de la figure \ref{fig:timb-position}. On voit (et cela se confirme à l'écoute) que frapper à $a=3R/4$ donne l'amortissement le plus long, et frapper à $a=0$ donne le plus court.
+
+Les spectres sont reproduits dans la figure \ref{fig:timb-position-spectre}. On note qu'aucun des spectres n'est harmoniques, ce qui est attendu. Le spectre pour $a=0$ est particulièrement non-musical. On observe cependant que le spectre des autres points d'excitations sont assez similaires.
+
+On s'intéressera donc dans la suite au point d'excitation $a=3R/4$, ce qui correspond à la technique de jeu orchestrale standard.
+
+\begin{figure}
   \begin{center}
-      \includegraphics[width=\textwidth]{percu/glock-f5.wav.spectre.png}
+    \includegraphics[width=\textwidth]{percu/timbale-position-frappe-temps.png}
   \end{center}
-  \caption{Spectre de glock-f5}
-\end{figure}
-\begin{figure}[h!]
-  \begin{center}
-      \includegraphics[width=\textwidth]{percu/glock-f6.wav.spectre.png}
-  \end{center}
-  \caption{Spectre de glock-f6}
-\end{figure}
-\begin{figure}[h!]
-  \begin{center}
-      \includegraphics[width=\textwidth]{percu/glock-f7.wav.spectre.png}
-  \end{center}
-  \caption{Spectre de glock-f7}
+  \caption{Signaux pour différents points d'excitation}
+  \label{fig:timb-position}
 \end{figure}
 
-\input{percu/glock-f5.wav.partiels}
-\input{percu/glock-f6.wav.partiels}
-\input{percu/glock-f7.wav.partiels}
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=\textwidth]{percu/timbale-position-frappe.png}
+  \end{center}
+  \caption{Spectres pour différents points d'excitation}
+  \label{fig:timb-position-spectre}
+\end{figure}
 
-\newpage
-\section{Mesures vibraphone}
-\label{annexe:vibra}
-\begin{figure}[h!]
+\subsection{Inharmonicité}
+
+On a reproduit les spectres respectifs dans les figures \ref{fig:timb-grave-spectre}, \ref{fig:timb-migrave-spectre} et \ref{fig:timb-aigu-spectre} de mesures à $a=3R/4$ pour différentes tensions de la membrane (resp. minimale, moyenne et maximale) réglée à l'aide de sa pédale de tension. On a ajouté en pointillés noirs les valeurs théoriques des fréquences propres des premiers modes.
+
+On peut noter que les pics du spectre mesuré s'approchent mais ne correspondent pas aux fréquences théoriques: le modèle présenté à la section prédédente ne prend pas en compte ni le rayonnement, ni le couplage avec la cuve.
+
+\begin{figure}
   \begin{center}
-      \includegraphics[width=\textwidth]{percu/vibra-f3.wav.spectre.png}
+    \includegraphics[width=\textwidth]{percu/timbale-grave-spectre.png}
   \end{center}
-  \caption{Spectre de vibra-f3}
+  \caption{Spectre pour $a=3R/4$, tension minimum}
+  \label{fig:timb-grave-spectre}
 \end{figure}
-\begin{figure}[h!]
+
+
+\begin{figure}
   \begin{center}
-      \includegraphics[width=\textwidth]{percu/vibra-a4-centre.wav.spectre.png}
+    \includegraphics[width=\textwidth]{percu/timbale-migrave-spectre.png}
   \end{center}
-  \caption{Spectre de vibra-a4-centre}
+  \caption{Spectre pour $a=3R/4$, tension moyenne}
+  \label{fig:timb-migrave-spectre}
 \end{figure}
-\begin{figure}[h!]
+
+\begin{figure}
   \begin{center}
-      \includegraphics[width=\textwidth]{percu/vibra-a4-bord.wav.spectre.png}
+    \includegraphics[width=\textwidth]{percu/timbale-aigu-spectre.png}
   \end{center}
-  \caption{Spectre de vibra-a4-bord}
+  \caption{Spectre pour $a=3R/4$, tension maximum}
+  \label{fig:timb-aigu-spectre}
 \end{figure}
-\begin{figure}[h!]
+
+Pour continuer la comparaison, la figure \ref{fig:comparaison-harmo-timbale} montre les différences d'accord des différents partiels pour plusieurs tensions de la membrane. L'axe des fréquences est ramené à la même échelle afin de permettre la comparaison entre les différentes courbes, et est gradué en octaves et en quintes.
+
+On remarque en premier lieu que les positions des pics ne sont pas strictement égales selon la tension. Toutefois, on observe que pour toutes les tensions, le deuxième partiel est accordé autour de la première quinte, et le deuxième autour de l'octave, ce qui contribue à la sensation de hauteur de note à l'écoute. On observe pour finir que plus la tension augmente, plus les pics s'approchent des harmoniques (et quintes), ce qui est également confirmé à l'écoute.
+
+\begin{figure}
   \begin{center}
-      \includegraphics[width=\textwidth]{percu/vibra-e6.wav.spectre.png}
+    \includegraphics[width=\textwidth]{percu/comparaison-harmo-timbale.png}
   \end{center}
-  \caption{Spectre de vibra-e6}
+  \caption{Spectres en fréquence ramenée}
+  \label{fig:comparaison-harmo-timbale}
 \end{figure}
-\input{percu/vibra-f3.wav.partiels.tex}
-\input{percu/vibra-a4-bord.wav.partiels.tex}
-\input{percu/vibra-a4-centre.wav.partiels.tex}
-\input{percu/vibra-e6.wav.partiels.tex}
+
+\subsection{Dureté des mailloches}
+
+On s'intéresse enfin à l'influence de la dureté des mailloches sur le son produit. Pour observer ceci, on mesure deux réponses à deux excitations au même point, avec la même tension de membrane, mais avec des mailloches de dureté différentes. Les spectres (smoothés avec un filtre de Savitzky-Golay pour faciliter la lecture) résultants sont reproduits figure \ref{fig:timb-soft-hard}.
+
+On observe que si la forme des deux spectres est très similaire, celui produit par la baguette dure a un contenu plus riche en hautes fréquences. Cela s'explique par la forme de l'excitation, qu'on peut modéliser par une fonction porte dont la largeur diminue avec la dureté des mailloches. Dans le domaine fréquence, celle-ci agit comme un filtre passe-bas dont la fréquence augmente avec la largeur de la porte.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=\textwidth]{percu/timbale-soft-hard.png}
+  \end{center}
+  \caption{Comparaison de mailloches de dureté différente}
+  \label{fig:timb-soft-hard}
+\end{figure}
+
+\section{Conclusion}
+
+Nous avons mis en évidence l'influence de différents facteurs sur le timbre du glockenspiel, du vibraphone et timbale.
+
+Le facteur d'instrument est garant de l'(in)harmonicité de l'instrument : en choisissant judicieusement le dimensionnement de diverses grandeurs, ou encore en usinant la forme des éléments vibrants comme pour le vibraphone, il peut en ajuster les fréquences propres et donc son timbre.
+
+Mais même si le musicien ne peut pas contrôler les fréquences propres, il est cependant dans son rôle d'être attentif à sa technique de jeu, qui peut alors influer sur les amplitudes.
+
+\printbibliography
 
 \end{document}
