@@ -224,10 +224,85 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
 \end{table}
 
 
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre_amp.png}
+    \caption{Module}
+    \label{subfig:admittance_cylindre_amp}
+  \end{subfigure}
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre_phase.png}
+    \caption{Phase}
+    \label{subfig:admittance_cylindre_phase}
+  \end{subfigure}
+  \caption{Admittance de sortie du cylindre}
+  \label{fig:admittance}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre+stack_amp.png}
+    \caption{Module}
+    \label{subfig:admittance_cylindre+stack_amp}
+  \end{subfigure}
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre+stack_phase.png}
+    \caption{Phase}
+    \label{subfig:admittance_cylindre+stack_phase}
+  \end{subfigure}
+  \caption{Admittance de sortie du cylindre avec stack}
+  \label{fig:admittance}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre+bec_amp.png}
+    \caption{Module}
+    \label{subfig:admittance_cylindre+bec_amp}
+  \end{subfigure}
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre+bec_phase.png}
+    \caption{Phase}
+    \label{subfig:admittance_cylindre+bec_phase}
+  \end{subfigure}
+  \caption{Admittance de sortie du cylindre avec bec}
+  \label{fig:admittance}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre+stack+bec_amp.png}
+    \caption{Module}
+    \label{subfig:admittance_cylindre+stack+bec_amp}
+  \end{subfigure}
+  \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/admittance_cylindre+stack+bec_phase.png}
+    \caption{Phase}
+    \label{subfig:admittance_cylindre+stack+bec_phase}
+  \end{subfigure}
+  \caption{Admittance de sortie du cylindre avec stack et bec}
+  \label{fig:admittance}
+\end{figure}
+
+On constate après avoir ajusté les valeurs de $Q_n$, $f_n$ et $Y_n$ que le modèle est cohérent avec les mesures. On peut donc utiliser les paramètres du modèle pour estimer les facteurs de qualité des différents modes. Ajouter le stack change principalement les facteurs de qualité, les fréquences de résonance étant peu modifiées.
+
+
 
 \section{Comportement dynamique de la flûte}
 
-Dans cette seconde partie du TP, une bouche artificielle permet de contrôler la pression d'entrée dans le bec. En faisant varier la pression, on s'attend à entendre l'apparition d'un premier régime (bifurcation de Hopf), puis à des bifurcations à chacuns des régimes correspondant aux fréquences des maxima de l'admittance de sortie mesurées dans la section précédente.
+Dans cette seconde partie du TP, une bouche artificielle permet de contrôler la pression d'entrée dans le bec. En faisant varier la pression, on s'attend à entendre l'apparition d'un premier régime (bifurcation de Hopf), puis à des bifurcations à chacun des régimes correspondant aux fréquences des maxima de l'admittance de sortie mesurées dans la section précédente.
 
 \subsection{Protocole}
 
