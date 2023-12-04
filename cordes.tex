@@ -104,10 +104,12 @@ Ensuite, un programme python effectue les traitements suivants:
 
 On définit les paramètres expérimentaux suivants, en suivant les notations de \cite{10.1121/1.384814}:
 \begin{itemize}
-    \item les deux premières fréquences de résonance $f_-$ et $f_+$ de la guitare
-    \item la fréquence de résonance du résonateur de helmholtz $f_h$
+    \item les deux premières fréquences de résonance $f_-$ et $f_+$ de la guitare (resp. $f_{-a}$ et $f_+a$ pour la mesure à masse ajoutée)
+    \item la fréquence de résonance du résonateur de helmholtz $f_h$ (resp. $f_ha$ pour la mesure à masse ajoutée)
     \item la masse ajoutée $m_{ajout}$
 \end{itemize}
+
+Même si ce n'est pas précisé, on relève à chaque fois les paramètres sur la mesure nue et à masse ajoutée.
 
 \section{Mesures sur la guitare}
 On effectue les 4 premières mesures sur la guitare. Les différentes FRF sont comparées sur les figures \ref{fig:frf-guitare-masse}, \ref{fig:frf-guitare-bouchee} et \ref{fig:frf-guitare-col}. Les pics et antipics sont identifiés à l'aide de croix.
@@ -135,35 +137,91 @@ On effectue les 4 premières mesures sur la guitare. Les différentes FRF sont c
 
 On observe plusieurs points:
 \begin{itemize}
-    \item l'ajout de la masse $m_{ajout} = 28 \si{g}$ (figure \ref{fig:frf-guitare-masse} diminue la fréquence du dernier pic, ce qui permet de l'identifier comme étant la deuxième résonance de la table d'harmonie et d'obtenir $f_+$.
+    \item l'ajout de la masse $m_{ajout} = 28 \si{g}$ (figure \ref{fig:frf-guitare-masse}) diminue la fréquence du dernier pic, ce qui permet de l'identifier comme étant la deuxième résonance du système et d'obtenir $f_+$.
     \item l'obstruction de l'évent (figure \ref{fig:frf-guitare-bouchee}) supprime le deuxième antipic, ce qui permet de l'identifier comme étant la résonance de Helmholtz et d'obtenir $f_h$.
     \item l'ajout d'un col ($4\si{cm}$) abaisse la fréquence de du deuxième pic (car il augmente la masse d'air $m_a$), confirmant le point précédent.
     \item on identifie donc $f_-$ comme étant le premier pic par élimination.
 \end{itemize}
 
 \section{Mesures sur le ukulélé}
-On procède de même sur le ukulélé.
+On procède de même sur le ukulélé (figures \ref{fig:frf-uku-masse}, \ref{fig:frf-uku-bouche} et \ref{fig:frf-uku-col}).
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{cordes/images/Ukulele masse ajoutee 20g.png}
     \caption{Comparaison des FRF du ukulélé nu et avec une masse ajoutée}
-    \label{fig:enter-label}
+    \label{fig:frf-uku-masse}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{cordes/images/Ukulele bouché.png}
     \caption{Comparaison des FRF du ukulélé nu et avec évent bouché}
-    \label{fig:enter-label}
+    \label{fig:frf-uku-bouche}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{cordes/images/Ukulele col.png}
-    \caption{Comparaison des FRF du ukulélé nu et avec une masse ajoutée}
-    \label{fig:enter-label}
+    \caption{Comparaison des FRF du ukulélé nu et avec un col}
+    \label{fig:frf-uku-col}
 \end{figure}
+
+On observe plusieurs points, avec la même méthode que pour la guitare:
+\begin{itemize}
+    \item l'ajout de la masse $m_{ajout} = 28 \si{g}$ (figure \ref{fig:frf-uku-masse}) diminue la fréquence du dernier pic, ce qui permet de l'identifier comme étant la deuxième résonance du système et d'obtenir $f_+$.
+    \item l'obstruction de l'évent (figure \ref{fig:frf-uku-bouchee}) supprime le troisième antipic, ce qui permet de l'identifier comme étant la résonance de Helmholtz et d'obtenir $f_h$.
+    \item l'ajout d'un col ($4\si{cm}$) abaisse la fréquence de du deuxième pic (car il augmente la masse d'air $m_a$), confirmant le point précédent.
+    \item on identifie donc $f_-$ comme étant le premier pic par élimination.
+\end{itemize}
+
+\section{Resultats}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{cordes/images/Guitare_comparaison_modele.png}
+    \caption{Guitare: Comparaison de la mesure avec le modèle théorique}
+    \label{fig:modele-guitare}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{cordes/images/Ukulele_comparaison_modele.png}
+    \caption{Ukulele: Comparaison de la mesure avec le modèle théorique}
+    \label{fig:modele-ukulele}
+\end{figure}
+
+Les resultats obtenus sont consignés, ainsi que les paramètres expérimentaux mesurés ayant permis de les obtenir, dans la table \ref{table:resultats}. Toutes les fréquences sont en Hz. Les figures \ref{fig:modele-guitare} et \ref{fig:modele-ukulele} montrent la compraison des mesures nues avec le modèle théorique calculé à partir des 
+
+\begin{table}
+\centering
+\caption{Résultats}
+\begin{tabular}{lll}
+                & Guitare     & Ukulélé     \\
+$f_-$           & 103.5       & 273.6       \\
+$f_+$           & 200         & 428.5       \\
+$f_h$           & 123         & 324.4       \\
+$f_{-a}$        & 101.6       & 268         \\
+$f_{+a}$        & 182.2       & 393.4       \\
+$f_{ha}$        & 123.4       & 331.6       \\
+$f_p$           & 188.6       & 391.5       \\
+$f_{ph}$        & 102.4       & 220.9       \\
+$f_{p,0}$       & 168.3       & 361.4       \\
+$m_p$           & 140.8g      & 83.5g       \\
+$k_p$           & 157.32 kN/m & 430.7 kN/m  \\
+$A$             & 1.123 m²    & 1.197 m²    \\
+$Q_-$           & 40.77       & 46.83       \\
+$Q_+$           & 24.4        & 53.63       \\
+$\gamma_-$      & 15.95       & 36.82       \\
+$\gamma_+$      & 51.54       & 50.31       \\
+$\gamma_p$      & 52.15       & 49.18       \\
+$\gamma_a$      & 15.34       & 37.95       \\
+$\frac{A}{m_p}$ & 7.98        & 14.33      
+\end{tabular}
+\label{table:resultats}
+\end{table}
+
+\section{Conclusion}
 
 \printbibliography
 

@@ -140,7 +140,7 @@ Les paramètres et formules citées permettent de tracer l'impédance d'entrée 
 
 \begin{figure}
     \centering
-    \includegraphics[width=.5\textwidth]{vents/images_vents/impedance_cylindre.png}
+    \includegraphics[width=.7\textwidth]{vents/images_vents/impedance_cylindre.png}
     \caption{Impédance du cylindre}
     \label{fig:ze-cyl}
 \end{figure}
@@ -153,7 +153,7 @@ $$
 Y_s=\sum_{n=1}^{\infty} \frac{j \omega Y_n}{\omega_n^2-\omega^2+j Q_n^{-1} \omega_n \omega}
 $$
 
-Cette modélisation, si elle s'avère cohérente avec nos mesures, permet d'estimer les facteurs de qualité des différents modes, liés aux amortissements.
+Cette modélisation, si elle s'avère cohérente avec nos mesures, permet d'estimer les facteurs de qualité des différents modes, liés aux amortissements. Les paramètres du modèle pour s'ajuster aux mesures des figures \ref{fig:admittance_cyl}, \ref{fig:admittance_cyl_stack}, \ref{fig:admittance_cyl_bec}, \ref{fig:admittance_cyl_stack_bec} sont respec listés dans les tables \ref{tab:param_cylindre}, \ref{tab:param_cylindre+stack}, \ref{tab:param_cylindre+bec} et \ref{tab:param_cylindre+stack+bec}.
 
 \begin{table}[H]
     \centering
@@ -239,7 +239,7 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \label{subfig:admittance_cylindre_phase}
   \end{subfigure}
   \caption{Admittance de sortie du cylindre}
-  \label{fig:admittance}
+  \label{fig:admittance_cyl}
 \end{figure}
 
 \begin{figure}[H]
@@ -257,7 +257,7 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \label{subfig:admittance_cylindre+stack_phase}
   \end{subfigure}
   \caption{Admittance de sortie du cylindre avec stack}
-  \label{fig:admittance}
+  \label{fig:admittance_cyl_stack}
 \end{figure}
 
 \begin{figure}[H]
@@ -275,7 +275,7 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \label{subfig:admittance_cylindre+bec_phase}
   \end{subfigure}
   \caption{Admittance de sortie du cylindre avec bec}
-  \label{fig:admittance}
+  \label{fig:admittance_cyl_bec}
 \end{figure}
 
 \begin{figure}[H]
@@ -293,12 +293,12 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \label{subfig:admittance_cylindre+stack+bec_phase}
   \end{subfigure}
   \caption{Admittance de sortie du cylindre avec stack et bec}
-  \label{fig:admittance}
+  \label{fig:admittance_cyl_stack_bec}
 \end{figure}
 
-On constate après avoir ajusté les valeurs de $Q_n$, $f_n$ et $Y_n$ que le modèle est cohérent avec les mesures. On peut donc utiliser les paramètres du modèle pour estimer les facteurs de qualité des différents modes. Ajouter le stack change principalement les facteurs de qualité, les fréquences de résonance étant peu modifiées.
+On constate après avoir ajusté les valeurs de $Q_n$, $f_n$ et $Y_n$ que le modèle est cohérent avec les mesures, au moins pour les premiers modes. Pour le cylindre seul et le cylindre avec stack, le premier "mode" analysé ne correspond pas à un mode attendu du cylindre. Il s'agit sans doute d'une zone ou la mesure est plus incertaine, ce qui semble comparée par la phase très bruitée. Ce "mode" est d'ailleurs l'exception dans une suite de partiels qui suit une relation d'inharmonicité qui semble pouvoir s'exprimer comme $f_{h} = h f_0 \sqrt{1+(h^2-1) \beta}$ où $\beta$ est le coefficient d’inharmonicité.
 
-
+On peut donc utiliser les paramètres du modèle pour estimer les facteurs de qualité des différents modes. Ajouter le stack change principalement les facteurs de qualité, les fréquences de résonance étant peu modifiées. Ces résultats sont bien conformes à ceux présentés par Auvray et Fabre \cite{Auvray2011}.
 
 \section{Comportement dynamique de la flûte}
 
@@ -306,8 +306,42 @@ Dans cette seconde partie du TP, une bouche artificielle permet de contrôler la
 
 \subsection{Protocole}
 
-Pour chaque configuration, on mesure % TODO insert description de la mesure
+On contrôle ici à l'aide de deux valves la pression dans la bouche artificielle. On mesure à l'oscilloscope la pression captée par un microphone placée en aval de la flûte. 
+Pour chaque configuration (avec et sans stack), on mesure pour différentes valeurs de pression, d'abord croissantes puis décroissantes :
+
+\begin{itemize}
+    \item $f$ la fréquence de la fondamentale jouée
+    \item l'amplitude du pic correspondant dans le spectre du son
+\end{itemize}
+
+On cherche alors à accumuler le plus de points autour des changements de registres : apparition d'une oscillation, puis passage du premier au second registre.
+
+N'ayant eu que peu de temps pour effectuer cette partie du TP, nous nous sommes concentrés sur la flûte avec stack (et en particulier le passage du premier au second registre) et avons récolté les données mesurées par des camarades pour la partie sans stack.
+
+Les mesures permettent de tracer les diagrammes de bifurcation pour les 2 configurations, illustrés dans la figure \ref{fig:bifurc}
+% TODO insert description de la mesure
+
+\subsection{Mesures}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{vents/images_vents/Diagramme bifurcation.png}
+    \caption{Diagrammes de bifurcation}
+    \label{fig:bifurc}
+\end{figure}
+
+On observe que les fréquences de jeu correspondent environ aux fréquences des maxima de l'admittance mesurées dans la première partie. 
+Les fréquences de jeu sont globalement légèrement inférieures aux fréquences de résonance prédites. Cela peut dans un premier temps être expliqué par l'absence de rayonnement dans la mesure de l'impédance de sortie puisque l'extrémité de sortie de la flûte est obstruée par le capteur. Le rayonnement rajoute une correction de longueur, diminuant logiquement la fréquence de résonance. % Cependant un rapide calcul avec 
+
+De plus, on remarque que la fréquence n'est pas simplement une fonction escalier de la pression dans la bouche. Deux choses diffèrent :
+\begin{enumerate}
+    \item Sur un même registre la fréquence augmente avec la pression dans la bouche de manière quasi linéaire.
+    \item Les bifurcations entre le premier et le second registre sont des bifurcations inverses (avec et sans le stack). Lorsque l'on atteint le second registre, on peut dans une certaine limite diminuer la pression et rester dans le second registre.
+\end{enumerate}
+
+La présence du stack a tendance à abaisser la pression nécessaire à passer dans le second registre, tout en laissant assez similaire la pression d'apparition du son (Bifurcation de Hopf). %En utilisant le modèle de Auvray et Fabre \cite{Auvray2011}, on peut remonter à l'influence du facteur de qualité sur les amortissements.
 
 \printbibliography
+
+\section{Conclusion}
 
 \end{document}
