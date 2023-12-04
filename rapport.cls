@@ -10,7 +10,7 @@
 %-------------------------------------------------------------------------------
 \RequirePackage [T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[german,english,french]{babel}
+\RequirePackage[english,french]{babel}
 %! order of languages affects language used for chapters
 
 \RequirePackage{xkeyval}
