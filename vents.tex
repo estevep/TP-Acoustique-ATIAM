@@ -57,7 +57,9 @@ M
     P_e\\U_e
 \end{pmatrix}$$
 
-Avec $M = \begin{pmatrix}A & B\\C&D\end{pmatrix}$, on a $Y_s = \frac{U_s}{P_s} = \frac{C + D Y_e}{C Z_e + D}$. La matrice $M$ est définie comme
+Avec $M = \begin{pmatrix}A & B\\C&D\end{pmatrix}$, on a $Y_s = \frac{U_s}{P_s} = \frac{C + D Y_e}{A + B Y_e}$. 
+
+Pour un tuyau cylindrique de longueur $l$, la matrice $M$ est définie comme
 
 \begin{equation}
     M = \begin{pmatrix}
@@ -67,9 +69,61 @@ Avec $M = \begin{pmatrix}A & B\\C&D\end{pmatrix}$, on a $Y_s = \frac{U_s}{P_s} =
     \label{eq:mat_trans_cylindre}
 \end{equation}
 
-pour un cylindre de longueur $l$, avec $Z_c = \sqrt{\frac{Z_v}{Y_t}}$ pour tenir compte des pertes visqueuses et thermiques comme indiqué durant le cours\cite{Vergez4}.
+avec $Z_c = \sqrt{\frac{Z_v}{Y_t}}$ pour tenir compte des pertes visqueuses et thermiques comme indiqué durant le cours\cite{Vergez4}.
 
-On vérifie dans un premier temps que les mesures d'impédances sont cohérentes 
+\subsection{Mesures}
+
+On effectue à l'aide d'un capteur d'impédance des mesures pour 4 configurations :
+\begin{enumerate}
+    \item Cylindre seul
+    \item Cylindre avec bec
+    \item Cylindre avec stack inséré
+    \item Cylindre avec bec et stack
+\end{enumerate}
+
+La position du stack changeant grandement son influence sur le comportement de l'instrument, on effectue les mesures dans l'ordre des configurations indiqués avant de passer à la partie dynamique avec bouche artificielle. De cette manière, toutes les mesures avec stack analysées dans cette partie et la suivante 
+
+Etant donné que l'on étudie les premiers registres on  mesure l'impédance de $\SI{100}{\Hz}$ jusqu'à $\SI{4}{\kHz}$. 
+Le temps de sweep est de $\SI{2}{\s}$, avec un moyennage sur 10 mesures.
+Mesurer une plus grande plage était possible, mais on souhaite maximiser le nombre de points et de temps de mesure dans la région d'intérêt.
+
+
+
+Pour vérifier la cohérence de l'ensemble des mesures, on analyse d'abord
+
+On vérifie dans un premier temps que les mesures d'impédances sont cohérentes en u
+
+\begin{itemize}
+    \item \textbf{Définition des paramètres :}
+    \begin{align*}
+        & l = \SI{183e-3}{\meter} \quad \text{(Longueur du tuyau)} \\
+        & D = \SI{19e-3}{\meter} \quad \text{(Diamètre du tuyau)} \\
+        & R = \frac{D}{2} \quad \text{(Rayon du tuyau)} \\
+        & T = \SI{21.7}{\celsius} \\
+        % & T_{\text{kelvin}} = T_{\text{celsius}} + 273.15 \\
+        & \rho_0 = 1.292 \left(\frac{273.15}{T_{\text{kelvin}}}\right) \quad \text{(Masse volumique de l'air, \si{\kg.\m^-3})} \\
+        & S = \pi R^2 \quad \text{(Section transversale du tuyau)} \\
+        & c = 20.05 \sqrt{T_{\text{kelvin}}} \quad \text{(Vitesse du son dans l'air)}
+    \end{align*}
+
+    \item \textbf{Calcul de l'impédance de rayonnement (\(Z_r\)) :}
+    \begin{align*}
+        & \alpha_1 = 1.044 \\
+        & \mu = 8.8848 \times 10^{-15} T_{\text{kelvin}}^3 - 3.2398 \times 10^{-11} T_{\text{kelvin}}^2 + 6.2657 \times 10^{-8} T_{\text{kelvin}} + 2.3543 \times 10^{-6} \\
+        & l_v = \frac{\mu}{\rho_0 c} \quad \text{(Longueur de pénétration visqueuse)} \\
+        & k_v = \sqrt{-j \frac{2\pi f}{c l_v}} \quad \text{(Nombre d'onde visqueux)} \\
+        & r_v = \lvert k_v R \rvert \quad \text{(Paramètre sans dimension pour les pertes viscoses)} \\
+        & v_\phi = c \left(1 - \frac{\alpha_1}{r_v}\right) \quad \text{(Vitesse phase de l'onde acoustique)} \\
+        & k = \frac{2\pi f}{v_\phi} \quad \text{(Nombre d'onde acoustique)} \\
+        & \delta_l = 0.61 R \quad \text{(Correction de longueur pour tenir compte du rayonnement)} \\
+        & Z_r = Z_c \left(jk\delta_l + \frac{1}{4}(kR)^2\right) \quad \text{(Impédance de rayonnement)}
+    \end{align*} 
+    \item \textbf{Calcul de l'impédance d'entrée (\(Z_e\)) :}
+    \begin{align*}
+        & \gamma = j2\pi\frac{f}{c} + (1 + j)3 \times 10^{-5} \sqrt{f} \frac{1}{R} \quad \text{(Paramètre complexe pour les pertes viscothermiques)} \\
+        & Z_e = \lvert Z_c \tanh(\gamma l + \text{arctanh}(Z_r/Z_c)) \rvert \quad \text{(Impédance d'entrée)}
+    \end{align*}
+\end{itemize}
 
 \begin{table}[H]
     \centering
@@ -103,24 +157,13 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \label{tab:param_cylindre+stack}
 \end{table}
 
+\section{Comportement dynamique de la flûte}
 
+Dans cette seconde partie du TP, une bouche artificielle permet de contrôler la pression d'entrée dans le bec. En faisant varier la pression, on s'attend à entendre l'apparition d'un premier régime (bifurcation de Hopf), puis à des bifurcations à chacuns des régimes correspondant aux fréquences des maxima de l'admittance de sortie mesurées dans la section précédente.
 
+\subsection{Protocole}
 
-Pour chacun des instruments, on effectue 4 mesures, cordes étouffées :
-\begin{enumerate}
-    \item Instrument sans modifications
-    \item Instrument avec masse ajoutée
-    \item Instrument avec évent bouché
-    \item Instrument avec col
-\end{enumerate}
-
-Celles-ci peuvent être répétées pour avoir au moins une mesure qui respecte les critères suivants :
-
-\begin{itemize}
-    \item Phase de la FRF comprise entre $0$ et $-\pi$ pour assurer la colocalisation du point de frappe et de mesure de l'accélération.
-    \item Frappe au plus proche possible d'un Dirac $\Leftrightarrow$ Excitation avec un niveau d'énergie significatif et assez constant pour la gamme de fréquences étudiée.
-    \item Pas de présence de pic avec une largeur dans la 
-\end{itemize}
+Pour chaque configuration, on mesure % TODO insert description de la mesure
 
 \printbibliography
 
