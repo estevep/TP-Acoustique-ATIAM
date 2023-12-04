@@ -32,7 +32,9 @@
 
 \section{Protocole}
 
-\section{Mesures d'impédances}
+\section{Impédance d'entrée de la flûte}
+
+\subsection{Etude théorique}
 
 On souhaite étudier l'influence des pertes visco-thermiques sur le comportement dynamique de l'instrument. Dans un premier temps, une mesure d'impédance acoustique est réalisée dans différentes configurations, afin d'estimer les fréquences des modes 
 
@@ -41,11 +43,11 @@ Puisqu'on étudie un instrument en première approximation ouvert-ouvert, les fr
 Notre capteur ayant une surface place plan, on y place l'extrémité "de sortie" de la flûte (opposée à l'embouchure) et on mesure donc l'impédance de sortie de l'instrument.
 
 Le modèle utilisé est celui de Auvray et al. \cite{Auvray2011}. Il permet de modéliser l'impédance de la flûte après le bec, à l'entrée du tuyau, là où le champ acoustique interagit sur le jet.
-$$Y=Y_c \frac{\cosh \left(\Gamma l+\eta_l\right) \cos \eta_m}{\sinh \left(\Gamma l+\eta_l+\eta_m\right)}$$
+$$Y_e=Y_c \frac{\cosh \left(\Gamma l+\eta_l\right) \cos \eta_m}{\sinh \left(\Gamma l+\eta_l+\eta_m\right)}$$
 
 avec $Y_c = \frac{S}{\rho c S_m}$, $S_m$ la section de la bouche, $l$ la longueur du tuyau, $\Gamma$ le nombre d'onde complexe et $\eta_i = \arg \tanh\left(\frac{Z_i}{Z_c}\right)$.
 
-En utilisant la méthode de l'impédance ramenée, on peut en déduire une formule
+En utilisant la méthode de l'impédance ramenée, on peut en déduire une formule théorique de l'impédance de sortie.
 
 Si $$\begin{pmatrix}
     P_s\\U_s
@@ -55,7 +57,8 @@ M
     P_e\\U_e
 \end{pmatrix}$$
 
-Avec $M = \begin{pmatrix}A & B\\C&D\end{pmatrix}$, on a $Z_s = \frac{P_s}{U_s} = \frac{A Z_e + B}{C Z_e + D}$. La matrice $M$ est définie comme
+Avec $M = \begin{pmatrix}A & B\\C&D\end{pmatrix}$, on a $Y_s = \frac{U_s}{P_s} = \frac{C + D Y_e}{C Z_e + D}$. La matrice $M$ est définie comme
+
 \begin{equation}
     M = \begin{pmatrix}
         \cosh \Gamma l & Z_c \sinh \Gamma l \\
@@ -63,12 +66,12 @@ Avec $M = \begin{pmatrix}A & B\\C&D\end{pmatrix}$, on a $Z_s = \frac{P_s}{U_s} =
     \end{pmatrix}
     \label{eq:mat_trans_cylindre}
 \end{equation}
-pour un cylindre de longueur $l$, avec $Z_c = \sqrt{\frac{Z_v}{Y_t}}$ pour tenir compte des pertes visqueuses et thermiques comme indiqué durant le cours\cite{Vergez4}.
 
+pour un cylindre de longueur $l$, avec $Z_c = \sqrt{\frac{Z_v}{Y_t}}$ pour tenir compte des pertes visqueuses et thermiques comme indiqué durant le cours\cite{Vergez4}.
 
 On vérifie dans un premier temps que les mesures d'impédances sont cohérentes 
 
-\begin{table}[]
+\begin{table}[H]
     \centering
     \begin{tabular}{ccc}
 \toprule
@@ -84,7 +87,7 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \label{tab:param_cylindre}
 \end{table}
 
-\begin{table}[]
+\begin{table}[H]
     \centering
     \begin{tabular}{ccc}
 \toprule
@@ -99,6 +102,8 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \caption{Paramètres du modèle pour le cylindre avec stack}
     \label{tab:param_cylindre+stack}
 \end{table}
+
+
 
 
 Pour chacun des instruments, on effectue 4 mesures, cordes étouffées :
