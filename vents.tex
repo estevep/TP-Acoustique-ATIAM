@@ -1,4 +1,6 @@
 \documentclass[atiam, article]{rapport} % draft, phelma_black, phelma_normal, kit_de, kit_en, phelma_old
+\usepackage{booktabs}
+
 
 \doctitle{TP Cordes}
 \title{TP Cordes\\Le ukulélé est-il une petite guitare ?}
@@ -14,6 +16,7 @@
     Sébastien Li
   \end{tabular}
 }
+\bibliography{biblio}
 \supervisor[Encadrants : ]{Jean-Loïc Le Carrou\\Christophe Vergez}
 % \supervisorMail{}
 \serie{ATIAM 2023/2024}
@@ -28,6 +31,75 @@
 
 
 \section{Protocole}
+
+\section{Mesures d'impédances}
+
+On souhaite étudier l'influence des pertes visco-thermiques sur le comportement dynamique de l'instrument. Dans un premier temps, une mesure d'impédance acoustique est réalisée dans différentes configurations, afin d'estimer les fréquences des modes 
+
+Puisqu'on étudie un instrument en première approximation ouvert-ouvert, les fréquences de résonances correspondent aux maxima de l'admittance d'entrée/de sortie et aux minima de l'impédance d'entrée/de sortie.
+
+Notre capteur ayant une surface place plan, on y place l'extrémité "de sortie" de la flûte (opposée à l'embouchure) et on mesure donc l'impédance de sortie de l'instrument.
+
+Le modèle utilisé est celui de Auvray et al. \cite{Auvray2011}. Il permet de modéliser l'impédance de la flûte après le bec, à l'entrée du tuyau, là où le champ acoustique interagit sur le jet.
+$$Y=Y_c \frac{\cosh \left(\Gamma l+\eta_l\right) \cos \eta_m}{\sinh \left(\Gamma l+\eta_l+\eta_m\right)}$$
+
+avec $Y_c = \frac{S}{\rho c S_m}$, $S_m$ la section de la bouche, $l$ la longueur du tuyau, $\Gamma$ le nombre d'onde complexe et $\eta_i = \arg \tanh\left(\frac{Z_i}{Z_c}\right)$.
+
+En utilisant la méthode de l'impédance ramenée, on peut en déduire une formule
+
+Si $$\begin{pmatrix}
+    P_s\\U_s
+\end{pmatrix} =
+M
+\begin{pmatrix}
+    P_e\\U_e
+\end{pmatrix}$$
+
+Avec $M = \begin{pmatrix}A & B\\C&D\end{pmatrix}$, on a $Z_s = \frac{P_s}{U_s} = \frac{A Z_e + B}{C Z_e + D}$. La matrice $M$ est définie comme
+\begin{equation}
+    M = \begin{pmatrix}
+        \cosh \Gamma l & Z_c \sinh \Gamma l \\
+        Z_c^{-1} \sinh \Gamma l & \cosh \Gamma l
+    \end{pmatrix}
+    \label{eq:mat_trans_cylindre}
+\end{equation}
+pour un cylindre de longueur $l$, avec $Z_c = \sqrt{\frac{Z_v}{Y_t}}$ pour tenir compte des pertes visqueuses et thermiques comme indiqué durant le cours\cite{Vergez4}.
+
+
+On vérifie dans un premier temps que les mesures d'impédances sont cohérentes 
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{ccc}
+\toprule
+$f_n$ & $Q_n$ & $Y_n$ \\ \midrule
+180 & 8 & 1032.07 \\
+898 & 75 & 3096.22 \\
+1810 & 70 & 3440.25 \\
+2720 & 50 & 4128.30 \\
+3630 & 50 & 4128.30 \\
+\bottomrule\\
+    \end{tabular}
+    \caption{Paramètres du modèle pour le cylindre seul}
+    \label{tab:param_cylindre}
+\end{table}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{ccc}
+\toprule
+$f_n$ & $Q_n$ & $Y_n$ \\ \midrule
+190 & 5 & 1032.07 \\
+877 & 13 & 2545.78 \\
+1770 & 12 & 3096.22 \\
+2710 & 17 & 4472.32 \\
+3555 & 20 & 2752.20 \\
+\bottomrule\\
+    \end{tabular}
+    \caption{Paramètres du modèle pour le cylindre avec stack}
+    \label{tab:param_cylindre+stack}
+\end{table}
+
 
 Pour chacun des instruments, on effectue 4 mesures, cordes étouffées :
 \begin{enumerate}
@@ -44,5 +116,7 @@ Celles-ci peuvent être répétées pour avoir au moins une mesure qui respecte 
     \item Frappe au plus proche possible d'un Dirac $\Leftrightarrow$ Excitation avec un niveau d'énergie significatif et assez constant pour la gamme de fréquences étudiée.
     \item Pas de présence de pic avec une largeur dans la 
 \end{itemize}
+
+\printbibliography
 
 \end{document}
