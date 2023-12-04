@@ -2,18 +2,17 @@
 \usepackage{booktabs}
 
 
-\doctitle{TP Cordes}
-\title{TP Cordes\\Le ukulélé est-il une petite guitare ?}
-\titleheader{TP Cordes}
+\doctitle{TP Vents}
+\title{TP Vents\\Les pertes nuisent-elles\\à la qualité des vents ?}
+\titleheader{TP Vents}
 \titleone{}
 \titletwo{Acoustique}
 \titlethree{}
-\author{Paul Estève, Étienne André, Sébastien Li} % Authors for the header
+\author{Paul Estève, Étienne André} % Authors for the header
 \autpage{ % Authors for the title page
   \begin{tabular}{l}
     Paul Estève \\
-    Étienne André\\
-    Sébastien Li
+    Étienne André
   \end{tabular}
 }
 \bibliography{biblio}
@@ -35,6 +34,7 @@
 \section{Impédance d'entrée de la flûte}
 
 \subsection{Etude théorique}
+\label{subsec:theorie}
 
 On souhaite étudier l'influence des pertes visco-thermiques sur le comportement dynamique de l'instrument. Dans un premier temps, une mesure d'impédance acoustique est réalisée dans différentes configurations, afin d'estimer les fréquences des modes 
 
@@ -87,43 +87,73 @@ Etant donné que l'on étudie les premiers registres on  mesure l'impédance de 
 Le temps de sweep est de $\SI{2}{\s}$, avec un moyennage sur 10 mesures.
 Mesurer une plus grande plage était possible, mais on souhaite maximiser le nombre de points et de temps de mesure dans la région d'intérêt.
 
+% Pour vérifier la cohérence de l'ensemble des mesures, on analyse d'abord
 
+\subsubsection{Impédance du cylindre seul et vérification de la cohérence des mesures}
 
-Pour vérifier la cohérence de l'ensemble des mesures, on analyse d'abord
-
-On vérifie dans un premier temps que les mesures d'impédances sont cohérentes en u
+On vérifie dans un premier temps que les mesures d'impédances sont cohérentes en comparant l'impédance d'entrée\footnote{Un cylindre étant symétrique, on parle ici successivement d'impédance d'entrée et d'impédance de sortie : elles sont égales.} mesurée pour le cylindre, avec les formules théoriques du cours \cite{Vergez4}. On utilise les formules avec l'approximation des tuyaux larges (nombre de Stokes $r_v$ grand permet un développement à l'ordre 1 de $\Gamma$) et une prise en compte de l'impédance de rayonnement pour un instrument non bafflé.
 
 \begin{itemize}
-    \item \textbf{Définition des paramètres :}
+    \item \textbf{Valeur des paramètres :}
     \begin{align*}
-        & l = \SI{183e-3}{\meter} \quad \text{(Longueur du tuyau)} \\
-        & D = \SI{19e-3}{\meter} \quad \text{(Diamètre du tuyau)} \\
-        & R = \frac{D}{2} \quad \text{(Rayon du tuyau)} \\
-        & T = \SI{21.7}{\celsius} \\
-        % & T_{\text{kelvin}} = T_{\text{celsius}} + 273.15 \\
-        & \rho_0 = 1.292 \left(\frac{273.15}{T_{\text{kelvin}}}\right) \quad \text{(Masse volumique de l'air, \si{\kg.\m^-3})} \\
-        & S = \pi R^2 \quad \text{(Section transversale du tuyau)} \\
-        & c = 20.05 \sqrt{T_{\text{kelvin}}} \quad \text{(Vitesse du son dans l'air)}
+        \begin{array}{lll}
+            l & = \SI{183e-3}{\meter} & \text{(Longueur du cylindre)} \\
+            D & = \SI{19e-3}{\meter} & \text{(Diamètre du cylindre)} \\
+            R & = \frac{D}{2} & \text{(Rayon du cylindre)} \\
+            T & = \SI{21.7}{\celsius} & \text{(Température de la salle)}\\
+            \rho_0 & = 1.292 \left(\frac{273.15}{T}\right) & \text{(Masse volumique de l'air, \si{\kg.\m^{-3}})} \\
+            S & = \pi R^2 & \text{(Section transversale du cylindre)} \\
+            c & = 20.05 \sqrt{T} & \text{(Vitesse du son dans l'air)}
+        \end{array}
     \end{align*}
 
     \item \textbf{Calcul de l'impédance de rayonnement (\(Z_r\)) :}
     \begin{align*}
-        & \alpha_1 = 1.044 \\
-        & \mu = 8.8848 \times 10^{-15} T_{\text{kelvin}}^3 - 3.2398 \times 10^{-11} T_{\text{kelvin}}^2 + 6.2657 \times 10^{-8} T_{\text{kelvin}} + 2.3543 \times 10^{-6} \\
-        & l_v = \frac{\mu}{\rho_0 c} \quad \text{(Longueur de pénétration visqueuse)} \\
-        & k_v = \sqrt{-j \frac{2\pi f}{c l_v}} \quad \text{(Nombre d'onde visqueux)} \\
-        & r_v = \lvert k_v R \rvert \quad \text{(Paramètre sans dimension pour les pertes viscoses)} \\
-        & v_\phi = c \left(1 - \frac{\alpha_1}{r_v}\right) \quad \text{(Vitesse phase de l'onde acoustique)} \\
-        & k = \frac{2\pi f}{v_\phi} \quad \text{(Nombre d'onde acoustique)} \\
-        & \delta_l = 0.61 R \quad \text{(Correction de longueur pour tenir compte du rayonnement)} \\
-        & Z_r = Z_c \left(jk\delta_l + \frac{1}{4}(kR)^2\right) \quad \text{(Impédance de rayonnement)}
-    \end{align*} 
-    \item \textbf{Calcul de l'impédance d'entrée (\(Z_e\)) :}
+        \begin{array}{lll}
+            \alpha_1 & = 1.044 \\
+            \mu & \simeq 8.9 \times 10^{-15} T^3 - 3.2 \times 10^{-11} T^2 + 6.3 \times 10^{-8} T + 2.4 \times 10^{-6} & \text{(Viscosité de l'air)}\\
+        \end{array}
+    \end{align*}
     \begin{align*}
-        & \gamma = j2\pi\frac{f}{c} + (1 + j)3 \times 10^{-5} \sqrt{f} \frac{1}{R} \quad \text{(Paramètre complexe pour les pertes viscothermiques)} \\
-        & Z_e = \lvert Z_c \tanh(\gamma l + \text{arctanh}(Z_r/Z_c)) \rvert \quad \text{(Impédance d'entrée)}
+        \begin{array}{lll}
+            l_v & = \frac{\mu}{\rho_0 c} & \text{(Epaisseur de la couche visqueuse)} \\
+            k_v & = \sqrt{-j \frac{2\pi f}{c l_v}} & \text{(Nombre d'onde de diffusion visqueuse)} \\
+            r_v & = \lvert k_v R \rvert & \text{(Nombre de Stokes)} \\
+            v_\phi & = c \left(1 - \frac{\alpha_1}{r_v}\right) & \text{(Vitesse de phase de l'onde acoustique)} \\
+            k & = \frac{2\pi f}{v_\phi} & \text{(Nombre d'onde)} \\
+            \Delta l & = 0.61 R & \text{(Correction de longueur due au rayonnement)} \\
+            Z_r & = Z_c \left(jk\Delta l + \frac{1}{4}(kR)^2\right) & \text{(Impédance de rayonnement)}
+        \end{array}
+    \end{align*}
+
+    \item \textbf{Calcul de l'impédance d'entrée (\(Z_e\)) dans le cadre des guides cylindriques "larges" :}
+    \begin{align*}
+        \begin{array}{lll}
+            \Gamma & = j2\pi\frac{f}{c} + (1 + j)3 \times 10^{-5} \sqrt{f} \frac{1}{R} & \text{(Paramètre complexe pour les pertes viscothermiques)} \\
+            Z_e & = \lvert Z_c \tanh(\Gamma l + \text{arctanh}(Z_r/Z_c)) \rvert & \text{(Impédance d'entrée)}
+        \end{array}
+        \label{eq:ze-cyl}
     \end{align*}
 \end{itemize}
+
+Les paramètres et formules citées permettent de tracer l'impédance d'entrée théorique. On compare dans la figure \ref{fig:ze-cyl} cette impédance théorique et l'impédance d'entrée mesurée. Les courbes se superposent quasi parfaitement à partir de $\SI{360}{\Hz}$. Le modèle est bien en adéquation avec la mesure. On conclue pour la suite que nos mesures d'impédance sont cohérentes.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{vents/images_vents/impedance_cylindre.png}
+    \caption{Impédance du cylindre}
+    \label{fig:ze-cyl}
+\end{figure}
+
+\subsubsection{Admittance des différentes configurations}
+
+Ne connaissant pas tous les paramètres du modèle plus complexe expliqué dans la section \ref{subsec:theorie}, en particulier les $\eta_i$, on modélise l'admittance de sortie par une somme de passe-bande du second ordre :
+
+$$
+Y_s=\sum_{n=1}^{\infty} \frac{j \omega Y_n}{\omega_n^2-\omega^2+j Q_n^{-1} \omega_n \omega}
+$$
+
+Cette modélisation, si elle s'avère cohérente avec nos mesures, permet d'estimer les facteurs de qualité des différents modes, liés aux amortissements.
 
 \begin{table}[H]
     \centering
@@ -156,6 +186,44 @@ $f_n$ & $Q_n$ & $Y_n$ \\ \midrule
     \caption{Paramètres du modèle pour le cylindre avec stack}
     \label{tab:param_cylindre+stack}
 \end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc}
+\toprule
+$f_n$ & $Q_n$ & $Y_n$ \\ \midrule
+508 & 16 & 2201.76 \\
+1045 & 57 & 2064.15 \\
+1592 & 65 & 2064.15 \\
+2160 & 38 & 2752.20 \\
+2708 & 60 & 2752.20 \\
+3308 & 45 & 3440.25 \\
+3879 & 50 & 4128.30 \\
+\bottomrule\\
+    \end{tabular}
+    \caption{Paramètres du modèle pour le cylindre et le bec}
+    \label{tab:param_cylindre+bec}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc}
+\toprule
+$f_n$ & $Q_n$ & $Y_n$ \\ \midrule
+498 & 7 & 2201.76 \\
+1045 & 20 & 1857.73 \\
+1575 & 20 & 1720.12 \\
+2161 & 20 & 2752.20 \\
+2702 & 30 & 2408.17 \\
+3265 & 20 & 3440.25 \\
+3845 & 40 & 1376.10 \\
+\bottomrule\\
+    \end{tabular}
+    \caption{Paramètres du modèle pour le cylindre avec stack et le bec}
+    \label{tab:param_cylindre+stack+bec}
+\end{table}
+
+
 
 \section{Comportement dynamique de la flûte}
 
